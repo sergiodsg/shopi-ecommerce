@@ -1,9 +1,9 @@
-function Home() {
+function MyOrder() {
   return (
     <div className='bg-red-100'>
-      Home
+      MyOrder
     </div>
   )
 }
 
-export default Home
+export default MyOrder

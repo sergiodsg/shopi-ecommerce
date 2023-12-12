@@ -1,9 +1,9 @@
-function Home() {
+function NotFound() {
   return (
     <div className='bg-red-100'>
-      Home
+      NotFound
     </div>
   )
 }
 
-export default Home
+export default NotFound

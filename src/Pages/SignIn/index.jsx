@@ -1,9 +1,9 @@
-function Home() {
+function SignIn() {
   return (
     <div className='bg-red-100'>
-      Home
+      SignIn
     </div>
   )
 }
 
-export default Home
+export default SignIn
