@@ -18,9 +18,9 @@ const ProductDetail = () => {
             <XMarkIcon className="h-6 w-6 text-black"></XMarkIcon>
           </div>
         </div>
-        <figure className="m-5">
+        <figure className="flex justify-center m-5">
           <img
-            className="w-full h-full rounded-lg"
+            className="rounded-lg"
             src={context.productToShow.images[0]}
             alt={context.productToShow.title}
           />
