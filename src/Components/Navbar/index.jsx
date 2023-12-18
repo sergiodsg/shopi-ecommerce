@@ -1,6 +1,7 @@
-import { useContext } from "react"
-import { ShoppingCartContext } from "../../Context"
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../Context";
 import { NavLink } from "react-router-dom";
+import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -9,11 +10,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-small font-light">
       <ul className="flex items-center gap-3">
         <li className="font-semibold text-lg">
-          <NavLink
-            to="/"
-          >
-            Shopi
-          </NavLink>
+          <NavLink to="/">Shopi</NavLink>
         </li>
         <li>
           <NavLink
@@ -67,15 +64,33 @@ const Navbar = () => {
       <ul className="flex items-center gap-3">
         <li className="text-black/60">sergio@mail.com</li>
         <li>
-          <NavLink to="/my-orders" className={({ isActive }) => (isActive ? activeStyle : "")}>My Orders</NavLink>
+          <NavLink
+            to="/my-orders"
+            className={({ isActive }) => (isActive ? activeStyle : "")}
+          >
+            My Orders
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/my-account" className={({ isActive }) => (isActive ? activeStyle : "")}>My Account</NavLink>
+          <NavLink
+            to="/my-account"
+            className={({ isActive }) => (isActive ? activeStyle : "")}
+          >
+            My Account
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/sign-in" className={({ isActive }) => (isActive ? activeStyle : "")}>Sign In</NavLink>
+          <NavLink
+            to="/sign-in"
+            className={({ isActive }) => (isActive ? activeStyle : "")}
+          >
+            Sign In
+          </NavLink>
         </li>
-        <li>🛒 {context.count}</li>
+        <li className="flex w-12 justify-around">
+          <ShoppingBagIcon className="h-6 w-6 text-black"></ShoppingBagIcon>
+          <div>{context.count}</div>
+        </li>
       </ul>
     </nav>
   );
