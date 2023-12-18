@@ -21,7 +21,7 @@ const Card = ({data}) => {
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{data.title}</span>
-        <span className="text-lg font-medium">${data.price}</span>
+        <span className="text-lg font-semibold">${data.price}</span>
       </p>
     </div>
   );
