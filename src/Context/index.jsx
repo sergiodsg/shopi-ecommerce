@@ -3,14 +3,26 @@ import { createContext, useState } from "react";
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
-
+  // Product Detail - Open/Close Modal
   const [openModal, setOpenModal] = useState(false);
 
+  // Product Detail - Product to show
   const [productToShow, setProductToShow] = useState({});
 
+  // Shoping Cart - Products added to cart
+  const [cartProducts, setCartProducts] = useState([]);
+
   return (
-    <ShoppingCartContext.Provider value={{ count, setCount, openModal, setOpenModal, productToShow, setProductToShow }}>
+    <ShoppingCartContext.Provider
+      value={{
+        openModal,
+        setOpenModal,
+        productToShow,
+        setProductToShow,
+        cartProducts,
+        setCartProducts,
+      }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   );
