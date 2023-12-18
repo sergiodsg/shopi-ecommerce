@@ -12,9 +12,9 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products')
+        const response = await fetch('https://dummyjson.com/products')
         const data = await response.json()
-        setItems(data)
+        setItems(data.products)
       } catch (error) {
         console.error(`Oh no, ocurrió un error: ${error}`);
       }

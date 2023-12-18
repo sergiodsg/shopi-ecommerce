@@ -7,8 +7,10 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const [openModal, setOpenModal] = useState(false);
 
+  const [productToShow, setProductToShow] = useState({});
+
   return (
-    <ShoppingCartContext.Provider value={{ count, setCount, openModal, setOpenModal }}>
+    <ShoppingCartContext.Provider value={{ count, setCount, openModal, setOpenModal, productToShow, setProductToShow }}>
       {children}
     </ShoppingCartContext.Provider>
   );
