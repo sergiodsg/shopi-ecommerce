@@ -1,13 +1,9 @@
-import { useState, useEffect, useContext } from "react"
-import { ShoppingCartContext } from "../../Context"
+import { useState, useEffect } from "react"
 import Card from "../../Components/Card"
-import Modal from "../../Components/Modal"
-import ProductDetail from "../../Components/ProductDetail";
-import Checkout from "../../Components/Checkout";
+
 
 function Home() {
-  const context = useContext(ShoppingCartContext);
-
+  
   const [items, setItems] = useState(null);
 
   useEffect(() => {
@@ -30,13 +26,6 @@ function Home() {
           items?.map(item => (<Card key={item.id} data={item} />))
         }
       </div>
-      {context.openModal && (
-        <Modal>
-          {
-            context.modalType ? <ProductDetail /> : <Checkout />
-          }
-        </Modal>
-      )}
       
     </div>
   )
