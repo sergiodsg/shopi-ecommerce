@@ -6,6 +6,9 @@ export const ShoppingCartProvider = ({ children }) => {
   // Product Detail - Open/Close Modal
   const [openModal, setOpenModal] = useState(false);
 
+  // Product Detail or Checkout
+  const [modalType, setModalType] = useState(null);
+
   // Product Detail - Product to show
   const [productToShow, setProductToShow] = useState({});
 
@@ -21,6 +24,8 @@ export const ShoppingCartProvider = ({ children }) => {
         setProductToShow,
         cartProducts,
         setCartProducts,
+        modalType,
+        setModalType
       }}
     >
       {children}

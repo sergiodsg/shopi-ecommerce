@@ -5,6 +5,12 @@ import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
+
+  const showCheckout = () => {
+    context.setModalType(false);
+    context.setOpenModal(true);
+  };
+
   const activeStyle = "underline underline-offset-4";
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-small font-light bg-slate-100">
@@ -87,7 +93,7 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="flex w-12 justify-around">
+        <li className="flex w-12 justify-around cursor-pointer" onClick={() => showCheckout()}>
           <ShoppingBagIcon className="h-6 w-6 text-black"></ShoppingBagIcon>
           <div>{context.cartProducts.length}</div>
         </li>

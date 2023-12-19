@@ -6,6 +6,7 @@ const Card = ({ data }) => {
   const context = useContext(ShoppingCartContext);
 
   const showProductDetail = (productDetail) => {
+    context.setModalType(true);
     context.setOpenModal(true);
     context.setProductToShow(productDetail);
   };

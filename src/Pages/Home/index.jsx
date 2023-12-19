@@ -3,6 +3,7 @@ import { ShoppingCartContext } from "../../Context"
 import Card from "../../Components/Card"
 import Modal from "../../Components/Modal"
 import ProductDetail from "../../Components/ProductDetail";
+import Checkout from "../../Components/Checkout";
 
 function Home() {
   const context = useContext(ShoppingCartContext);
@@ -31,7 +32,9 @@ function Home() {
       </div>
       {context.openModal && (
         <Modal>
-          <ProductDetail />
+          {
+            context.modalType ? <ProductDetail /> : <Checkout />
+          }
         </Modal>
       )}
       
