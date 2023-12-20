@@ -15,6 +15,9 @@ export const ShoppingCartProvider = ({ children }) => {
   // Shoping Cart - Products added to cart
   const [cartProducts, setCartProducts] = useState([]);
 
+  //Shopping Cart - Order
+  const [order, setOrder] = useState([]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -25,7 +28,9 @@ export const ShoppingCartProvider = ({ children }) => {
         cartProducts,
         setCartProducts,
         modalType,
-        setModalType
+        setModalType,
+        order,
+        setOrder
       }}
     >
       {children}
