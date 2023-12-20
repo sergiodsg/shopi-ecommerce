@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
@@ -18,6 +18,22 @@ export const ShoppingCartProvider = ({ children }) => {
   //Shopping Cart - Order
   const [order, setOrder] = useState([]);
 
+  //Get Products
+  const [items, setItems] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://dummyjson.com/products')
+        const data = await response.json()
+        setItems(data.products)
+      } catch (error) {
+        console.error(`Oh no, ocurrió un error: ${error}`);
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -30,7 +46,9 @@ export const ShoppingCartProvider = ({ children }) => {
         modalType,
         setModalType,
         order,
-        setOrder
+        setOrder,
+        items,
+        setItems
       }}
     >
       {children}
