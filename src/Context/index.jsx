@@ -25,28 +25,69 @@ export const ShoppingCartProvider = ({ children }) => {
   //Get Products by Title
   const [searchByTitle, setSearchByTitle] = useState(null);
 
+  //Get Products by Category
+  const [searchByCategory, setSearchByCategory] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://dummyjson.com/products')
-        const data = await response.json()
-        setItems(data.products)
+        const response = await fetch("https://dummyjson.com/products");
+        const data = await response.json();
+        setItems(data.products);
       } catch (error) {
         console.error(`Oh no, ocurrió un error: ${error}`);
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   const filteredItemsByTitle = (items, searchByTitle) => {
-    return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
-  }
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  const filteredItemsByCategory = (items, searchByCategory) => {
+    return items?.filter((item) =>
+      searchByCategory == "others"
+        ? !(
+            item.category.toLowerCase() == "smartphones" ||
+            item.category.toLowerCase() == "laptops" ||
+            item.category.toLowerCase() == "fragrances" ||
+            item.category.toLowerCase() == "skincare"
+          )
+        : item.category.toLowerCase().includes(searchByCategory.toLowerCase())
+    );
+  };
+
+  const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+    if(searchType == "title"){
+      return filteredItemsByTitle(items, searchByTitle);
+    } else if (searchType == "category"){
+      return filteredItemsByCategory(items, searchByCategory);
+    } else if (searchType == "both"){
+      return filteredItemsByCategory(items, searchByCategory).filter((item) =>
+        item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+      );
+    } else {
+      return items;
+    }
+  };
 
   useEffect(() => {
-    if(searchByTitle) {
-      setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+    if(searchByTitle && searchByCategory){
+      setFilteredItems(filterBy("both", items, searchByTitle, searchByCategory));
     }
-  }, [items, searchByTitle])
+    if(searchByTitle && !searchByCategory){
+      setFilteredItems(filterBy("title", items, searchByTitle, searchByCategory));
+    }
+    if(!searchByTitle && searchByCategory){
+      setFilteredItems(filterBy("category", items, searchByTitle, searchByCategory));
+    }
+    if(!searchByTitle && !searchByCategory){
+      setFilteredItems(items);
+    }
+  }, [items, searchByTitle, searchByCategory]);
 
   return (
     <ShoppingCartContext.Provider
@@ -66,7 +107,9 @@ export const ShoppingCartProvider = ({ children }) => {
         searchByTitle,
         setSearchByTitle,
         filteredItems,
-        setFilteredItems
+        setFilteredItems,
+        searchByCategory,
+        setSearchByCategory,
       }}
     >
       {children}

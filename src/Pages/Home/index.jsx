@@ -4,6 +4,7 @@ import Card from "../../Components/Card";
 
 function Home() {
   const context = useContext(ShoppingCartContext);
+  console.log(context.items);
 
   return (
     <div>
@@ -19,7 +20,7 @@ function Home() {
         />
       </div>
       <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-        {context.searchByTitle?.length > 0
+        {context.searchByTitle?.length > 0 || context.searchByCategory?.length > 0
           ? (context.filteredItems?.length > 0 ? (context.filteredItems?.map((item) => (
               <Card key={item.id} data={item} />
             ))) : <div className="w-full text-center text-xl font-medium">No results found :(</div>) 
